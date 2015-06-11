@@ -1,4 +1,4 @@
-package edu.fle.behaviorParametrization;
+package edu.fle.chapter2.behaviorParametrization;
 
 public class Apple {
 	

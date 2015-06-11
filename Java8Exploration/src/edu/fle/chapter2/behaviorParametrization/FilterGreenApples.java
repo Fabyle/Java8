@@ -1,9 +1,11 @@
-package edu.fle.behaviorParametrization;
+package edu.fle.chapter2.behaviorParametrization;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.fle.behaviorParametrization.predicate.ApplePredicate;
+import edu.fle.chapter2.behaviorParametrization.predicate.AppleGreenColorsPredicate;
+import edu.fle.chapter2.behaviorParametrization.predicate.ApplePredicate;
+import edu.fle.chapter2.behaviorParametrization.predicate.Predicate;
 
 public class FilterGreenApples {
 	
@@ -26,11 +28,34 @@ public class FilterGreenApples {
 		inventory.add(apple5);
 		inventory.add(apple6);
 		
-		
+		// -----------
 		filterGreenApples(inventory);
 		filterApplesByColor(inventory,"green");
 		filterApplesByColor(inventory,"red");
 		filterApplesByWeight(inventory,150);
+		
+		// ----------		
+		filterApples(inventory,new AppleGreenColorsPredicate());
+		
+		filterApples(inventory, new ApplePredicate() {
+			
+			@Override
+			public boolean test(Apple apple) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		});
+		
+		filterApples(inventory,(Apple apple) -> "red".equals(apple.getColor()));
+		
+		// ------
+		filter(inventory,(Apple apple) -> "red".equals(apple.getColor()));
+		List<Integer> numbers  = new ArrayList<Integer>();
+		numbers.add(1);
+		numbers.add(2);
+		numbers.add(3);
+		numbers.add(4);
+		filter(numbers,(Integer i) -> i % 2 == 0);
 
 	}
 	
@@ -73,5 +98,16 @@ public class FilterGreenApples {
 		}
 		return result;
 	}
+	
+	public static <T> List<T> filter(List<T> inventory,Predicate<T> p){
+		List<T> result = new ArrayList<>();
+		for (T e : inventory){
+			if (p.test(e)){
+				result.add(e);
+			}
+		}
+		return result;
+	}
+	
 
 }

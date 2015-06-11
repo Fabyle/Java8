@@ -1,6 +1,6 @@
-package edu.fle.behaviorParametrization.predicate;
+package edu.fle.chapter2.behaviorParametrization.predicate;
 
-import edu.fle.behaviorParametrization.Apple;
+import edu.fle.chapter2.behaviorParametrization.Apple;
 
 public class AppleHeavyWeightPredicate implements ApplePredicate {
 
